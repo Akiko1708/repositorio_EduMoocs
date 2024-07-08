@@ -9,7 +9,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="Inicio">
         <img src="{%static '/edumocs/images/logo.webp'%}" width="30" height="30" class="d-inline-block align-top" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,8 +30,10 @@
                 <a class="nav-link" href="{% url "Preguntas" %}">Preguntas Frecuentes</a>
             </li>
         </ul>
+        {% block boton %}
         <a href="{% url 'Administrador' %}"><button class="btn btn-outline-light my-2 my-sm-0" type="button">Acceder</button></a>
-    </div>
+        {% endblock boton %}
+    </div>  
 </nav>
 
 

@@ -235,3 +235,105 @@
     padding: 5px 10px;
     cursor: pointer;
 }
+
+/* Archivo CSS */
+body {
+    background: #f8f9fa; /* Fondo gris claro */
+}
+
+.container {
+    min-height: 80vh; /* Altura mínima para centrar verticalmente */
+}
+
+.card {
+    background: white; /* Fondo blanco para la tarjeta */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem; /* Tamaño del título */
+    color: #333; /* Color del título */
+}
+
+.form-group label {
+    font-weight: bold; /* Negrita para las etiquetas */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Color del botón */
+    border-color: #007bff; /* Borde del botón */
+}
+
+/* Archivo CSS */
+body {
+    background: #f8f9fa; /* Fondo gris claro */
+}
+
+.profile-container {
+    background: #fff; /* Fondo blanco */
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.profile-picture {
+    border-radius: 50%; /* Imagen redonda */
+    width: 150px;
+    height: 150px;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-icon {
+    color: #007bff; /* Color del icono */
+    cursor: pointer;
+}
+
+.table {
+    background: #fff; /* Fondo blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.table th, .table td {
+    vertical-align: middle; /* Centrado vertical */
+}
+
+.course-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover; /* Recorte de imagen */
+}
+
+.btn-custom {
+    background-color: #007bff; /* Color del botón */
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #0056b3; /* Color del botón al pasar el mouse */
+}
+
+.btn-edit {
+    background-color: #28a745; /* Color del botón editar */
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #218838; /* Color del botón editar al pasar el mouse */
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Color del botón eliminar */
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* Color del botón eliminar al pasar el mouse */
+}
+
