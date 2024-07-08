@@ -1,0 +1,104 @@
+{% extends "contenido/BaseNavBar.html" %} {% block titulo %}Panel de
+Admin{%endblock titulo %} {% block contenido %}
+<main class="container mt-5 pt-5">
+  <div class="row">
+    <div class="col-md-3 text-center profile-container">
+      {% load static %}
+      <img
+        src="{% static '/edumocs/images/profile.png' %}"
+        alt="Profile Picture"
+        class="profile-picture"
+      />
+      <div class="btn-group">
+        <button class="btn btn-custom">Editar</button>
+        <button class="btn btn-custom">Ver</button>
+      </div>
+      <h2>Datos personales</h2>
+      <ul class="list-group">
+        <li class="list-group-item">
+          Nombre completo: <span>{{ usuario_detalles.nombre }}</span>
+          <span class="edit-icon">&#x270E;</span>
+        </li>
+        <li class="list-group-item">
+          Correo electrónico:
+          <span>{{ usuario_detalles.correo_electronico }}</span>
+          <span class="edit-icon">&#x270E;</span>
+        </li>
+        <li class="list-group-item">
+          Número de teléfono:
+          <span>{{ usuario_detalles.numero_telefono }}</span>
+          <span class="edit-icon">&#x270E;</span>
+        </li>
+        <li class="list-group-item">
+          Fecha de nacimiento:
+          <span>{{ usuario_detalles.fecha_nacimiento }}</span>
+          <span class="edit-icon">&#x270E;</span>
+        </li>
+        <li class="list-group-item">
+          Nombre de usuario: <span>{{ usuario_detalles.nombre_usuario }}</span>
+          <span class="edit-icon">&#x270E;</span>
+        </li>
+        <li class="list-group-item">
+          Género: <span>{{ usuario_detalles.genero }}</span>
+          <span class="edit-icon">&#x270E;</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>Clave</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Duración Horas</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Término</th>
+            <th>Costo</th>
+            <th>Cupos</th>
+            <th>Imagen</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for curso in cursos %}
+
+          <tr>
+            <td>{{curso.id}}</td>
+            <td>{{curso.nombre}}</td>
+            <td class="td-width">
+              <div class="course-item">{{curso.descripcion}}</div>
+            </td>
+            <td>{{curso.horas}}</td>
+            <td>{{curso.fecha_inicio}}</td>
+            <td>{{curso.fecha_termino}}</td>
+            <td>{{curso.costo}}</td>
+            <td>{{curso.cupos}}</td>
+            <td>
+              <div class="course-item">
+                <img
+                  src="{{curso.imagen.url}}"
+                  alt="Course Image"
+                  class="course-img"
+                />
+              </div>
+            </td>
+            <td>
+              <a href="{%url 'ConsultaIndividual' curso.id %}"
+                ><button class="btn btn-edit">&#x270E;</button></a
+              >
+              <a href="{%url 'Eliminar' curso.id %}"
+                ><button class="btn btn-delete">&#x1F5D1;</button></a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a href="{% url 'Alta' %}"
+        ><button class="btn btn-custom">Nuevo Curso</button></a
+      >
+    </div>
+  </div>
+</main>
+{% endblock contenido %}

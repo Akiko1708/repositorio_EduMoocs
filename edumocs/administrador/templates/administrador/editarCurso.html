@@ -1,0 +1,73 @@
+{% extends "contenido/BaseNavBar.html" %} {% block titulo %}Edición de
+Cursos{%endblock titulo %} {% block contenido %}
+<form
+  action="{%url 'Editar' curso.id%}"
+  method="POST"
+  role="form"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %}
+
+  <label for="nombre">Nombre del Curso:</label>
+  <input value="{{ curso.nombre }}" type="text" name="nombre" id="nombre" />
+
+  <label for="costo">Costo:</label>
+  <input
+    value="{{ curso.costo }}"
+    step="any"
+    type="number"
+    name="costo"
+    id="costo"
+  />
+
+  <label for="fecha_inicio">Fecha de Inicio:</label>
+  <input
+    value="{{ curso.fecha_inicio }}"
+    type="date"
+    name="fecha_inicio"
+    id="fecha_inicio"
+  />
+
+  <label for="fecha_termino">Fecha de Finalización:</label>
+  <input
+    value="{{ curso.fecha_termino }}"
+    type="date"
+    name="fecha_termino"
+    id="fecha_termino"
+  />
+
+  <label for="horas">Total de Horas:</label>
+  <input
+    value="{{ curso.horas }}"
+    step="any"
+    type="number"
+    name="horas"
+    id="horas"
+  />
+
+  <label for="cupos">Cupos:</label>
+  <input value="{{ curso.cupos }}" type="number" name="cupos" id="cupos" />
+
+  <label for="imagen">Imagen Actual:</label>
+  {% if curso.imagen %}
+  <div>
+    <img
+      src="{{ curso.imagen.url }}"
+      alt="Imagen del curso"
+      width="150"
+      height="150"
+    />
+  </div>
+  {% endif %}
+
+  <label for="imagen">Subir Nueva Imagen:</label>
+  <input type="file" name="imagen" id="imagen" />
+
+  <label for="descripcion">Descripción:</label>
+  <textarea cols="50" name="descripcion" rows="10" id="descripcion">
+{{ curso.descripcion }}</textarea
+  >
+
+  <input type="submit" value="Enviar" class="btn btn-primary" />
+</form>
+{% endblock contenido %}
