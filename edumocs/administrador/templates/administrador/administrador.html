@@ -1,15 +1,24 @@
 {% extends "contenido/BaseNavBar.html" %} {% block titulo %}Panel de
-Admin{%endblock titulo %} {% block contenido %}
+Admin{%endblock titulo %} {% load static %} {% block boton %}
+<a class="navbar-brand" href="{% url 'Administrador' %}">
+  <img
+    src="{% static '/edumocs/images/profile.png' %}"
+    width="30"
+    height="30"
+    class="d-inline-block align-top"
+    alt="Admin"
+  />
+</a>
+{% endblock boton %} {% block contenido %}
 <main class="container mt-5 pt-5">
   <div class="row">
     <div class="col-md-3 text-center profile-container">
-      {% load static %}
       <img
         src="{% static '/edumocs/images/profile.png' %}"
         alt="Profile Picture"
-        class="profile-picture"
+        class="profile-picture img-thumbnail mb-3"
       />
-      <div class="btn-group">
+      <div class="btn-group mb-4">
         <button class="btn btn-custom">Editar</button>
         <button class="btn btn-custom">Ver</button>
       </div>
@@ -45,59 +54,62 @@ Admin{%endblock titulo %} {% block contenido %}
       </ul>
     </div>
     <div class="col-md-9">
-      <table class="table table-bordered">
-        <thead class="thead-light">
-          <tr>
-            <th>Clave</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Duración Horas</th>
-            <th>Fecha de Inicio</th>
-            <th>Fecha de Término</th>
-            <th>Costo</th>
-            <th>Cupos</th>
-            <th>Imagen</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          {%for curso in cursos %}
-
-          <tr>
-            <td>{{curso.id}}</td>
-            <td>{{curso.nombre}}</td>
-            <td class="td-width">
-              <div class="course-item">{{curso.descripcion}}</div>
-            </td>
-            <td>{{curso.horas}}</td>
-            <td>{{curso.fecha_inicio}}</td>
-            <td>{{curso.fecha_termino}}</td>
-            <td>{{curso.costo}}</td>
-            <td>{{curso.cupos}}</td>
-            <td>
-              <div class="course-item">
-                <img
-                  src="{{curso.imagen.url}}"
-                  alt="Course Image"
-                  class="course-img"
-                />
-              </div>
-            </td>
-            <td>
-              <a href="{%url 'ConsultaIndividual' curso.id %}"
-                ><button class="btn btn-edit">&#x270E;</button></a
-              >
-              <a href="{%url 'Eliminar' curso.id %}"
-                ><button class="btn btn-delete">&#x1F5D1;</button></a
-              >
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <a href="{% url 'Alta' %}"
-        ><button class="btn btn-custom">Nuevo Curso</button></a
-      >
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th>Clave</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Duración Horas</th>
+              <th>Fecha de Inicio</th>
+              <th>Fecha de Término</th>
+              <th>Costo</th>
+              <th>Cupos</th>
+              <th>Imagen</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for curso in cursos %}
+            <tr>
+              <td>{{ curso.id }}</td>
+              <td>{{ curso.nombre }}</td>
+              <td class="td-width">
+                <div class="course-item">{{ curso.descripcion }}</div>
+              </td>
+              <td>{{ curso.horas }}</td>
+              <td>{{ curso.fecha_inicio }}</td>
+              <td>{{ curso.fecha_termino }}</td>
+              <td>{{ curso.costo }}</td>
+              <td>{{ curso.cupos }}</td>
+              <td>
+                <div class="course-item">
+                  <img
+                    src="{{ curso.imagen.url }}"
+                    alt="Course Image"
+                    class="course-img img-thumbnail"
+                  />
+                </div>
+              </td>
+              <td>
+                <a href="{% url 'ConsultaIndividual' curso.id %}"
+                  ><button class="btn btn-edit btn-sm">&#x270E;</button></a
+                >
+                <a href="{% url 'Eliminar' curso.id %}"
+                  ><button class="btn btn-delete btn-sm">&#x1F5D1;</button></a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center">
+        <a href="{% url 'Alta' %}"
+          ><button class="btn btn-custom">Nuevo Curso</button></a
+        >
+      </div>
     </div>
   </div>
 </main>
