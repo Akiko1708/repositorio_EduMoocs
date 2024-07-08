@@ -1,0 +1,23 @@
+{% extends "contenido/BaseNavBar.html" %} {% block titulo %}Eliminar
+Curso{%endblock titulo %} {% block contenido %}
+<div class="page-header">
+  <div class="page-title">
+    <h3>Eliminar</h3>
+  </div>
+</div>
+
+<form method="POST">
+  {% csrf_token %}
+
+  <div class="alert alert-danger" role="alert">
+    <h5>Eliminando Comentario</h5>
+    <p>
+      ¿Estás seguro de que deseas <strong>Eliminar</strong> el curso
+      seleccionado?
+    </p>
+  </div>
+
+  <button type="submit" class="btn btn-danger">Sí</button>
+  <a href="{% url 'Cursos' %}" class="btn btn-primary">Cancelar</a>
+</form>
+{% endblock %}

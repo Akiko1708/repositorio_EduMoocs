@@ -1,0 +1,22 @@
+{% extends "contenido/BaseNavBar.html" %} {% block titulo %}Alta de
+Cursos{%endblock titulo %} {% block contenido%}
+
+<form
+  action="{% url 'Alta' %}"
+  method="POST"
+  role="form"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %}
+  <input type="text" name="nombre" />
+  <input step="any" type="number" name="costo" />
+  <input type="date" name="fecha_inicio" />
+  <input type="date" name="fecha_termino" />
+  <input step="any" type="number" name="horas" />
+  <input type="number" name="cupos" />
+  <input type="file" name="imagen" />
+  <textarea cols="50" name="descripcion" rows="10"></textarea>
+  <input type="submit" value="Enviar" class="btn btn-primary" />
+</form>
+
+{%endblock contenido%}
