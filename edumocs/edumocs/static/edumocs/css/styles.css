@@ -236,104 +236,47 @@
     cursor: pointer;
 }
 
-/* Archivo CSS */
-body {
-    background: #f8f9fa; /* Fondo gris claro */
-}
-
-.container {
-    min-height: 80vh; /* Altura mínima para centrar verticalmente */
-}
-
-.card {
-    background: white; /* Fondo blanco para la tarjeta */
-    border-radius: 8px; /* Bordes redondeados */
+/* Estilos personalizados para la página de inicio de sesión */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
     padding: 20px;
-}
-
-.card-title {
-    font-size: 1.5rem; /* Tamaño del título */
-    color: #333; /* Color del título */
-}
-
-.form-group label {
-    font-weight: bold; /* Negrita para las etiquetas */
-}
-
-.btn-primary {
-    background-color: #007bff; /* Color del botón */
-    border-color: #007bff; /* Borde del botón */
-}
-
-/* Archivo CSS */
-body {
-    background: #f8f9fa; /* Fondo gris claro */
-}
-
-.profile-container {
-    background: #fff; /* Fondo blanco */
-    padding: 20px;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
-}
-
-.profile-picture {
-    border-radius: 50%; /* Imagen redonda */
-    width: 150px;
-    height: 150px;
-}
-
-.list-group-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login-container form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+  .login-container form .btn {
+    margin-top: 10px;
+  }
+/* Estilos para el login con imagen de fondo */
+.login-background {
+    background-image: url('./../images/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.edit-icon {
-    color: #007bff; /* Color del icono */
-    cursor: pointer;
+.login-container {
+    background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
 }
-
-.table {
-    background: #fff; /* Fondo blanco */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
-}
-
-.table th, .table td {
-    vertical-align: middle; /* Centrado vertical */
-}
-
-.course-img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover; /* Recorte de imagen */
-}
-
-.btn-custom {
-    background-color: #007bff; /* Color del botón */
-    color: white;
-}
-
-.btn-custom:hover {
-    background-color: #0056b3; /* Color del botón al pasar el mouse */
-}
-
-.btn-edit {
-    background-color: #28a745; /* Color del botón editar */
-    color: white;
-}
-
-.btn-edit:hover {
-    background-color: #218838; /* Color del botón editar al pasar el mouse */
-}
-
-.btn-delete {
-    background-color: #dc3545; /* Color del botón eliminar */
-    color: white;
-}
-
-.btn-delete:hover {
-    background-color: #c82333; /* Color del botón eliminar al pasar el mouse */
-}
-
+  

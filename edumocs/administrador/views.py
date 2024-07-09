@@ -6,8 +6,10 @@ from cursos.models import Cursos
 from .forms import cursosForm
 from .forms import PruebaForm
 from .models import Prueba
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 def panelPrincipal(request):
     curso = Cursos.objects.all()
@@ -60,7 +62,13 @@ def altaCurso(request):
 
 def continuar(request):
     return render(request,'administrador/continuar.html')
-#####################################################################################################
+
+class CustomLoginView(auth_views.LoginView):
+    template_name = 'administrador/custom_login.html'
+    success_url = reverse_lazy('home') 
+
+
+##################################Editar Cursos, aún en pruebas no tocar###################################################################
 def consultarCursoIndividual(request, id):
     curso=Cursos.objects.get(id=id)
     return render(request,"administrador/editarCurso.html",{'curso':curso})
