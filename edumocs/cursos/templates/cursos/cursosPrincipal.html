@@ -1,33 +1,43 @@
 {% extends "contenido/BaseNavBar.html" %}
 {% block titulo %}Cursos{% endblock titulo %}
-{% load static %}
 
 {% block contenido %}
-    <main >
-        <div class = "container mt-5 pt-5">
-            <h1 class="display-4">Cursos</h1>
-            <div class="search-bar">
-                <input type="text" placeholder="Buscar">
-                <button type="submit"><img src="{% static 'edumocs/images/busqueda.webp' %}" alt="Buscar"></button>
-            </div>
-            <div class = "courses">
-                {%for curso in cursos%}
-                <div class = "course-item">
-                    <img src = "{{curso.imagen.url}}">
-                    <div class = "course-title"> {{curso.nombre}}</div>
-                </div>
-                {%endfor%}
-            </div>
-            
-            <div class="pagination">
-                <!-- Ejemplo de paginación estática -->
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-                <span>6</span>
-            </div>
+{% load static %}
+<main>
+    <div class="container mt-5 pt-5">
+        <h1 class="display-4">Cursos</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar">
+            <button type="submit"><img src="{% static 'edumocs/images/busqueda.webp' %}" alt="Buscar"></button>
         </div>
-    </main>
+        
+        <div class="courses">
+            {% for curso in cursos %}
+            <a href = "{% url "CursoContenido" curso.id %}">
+                <div class="course-item">
+                    <!-- Asumiendo que tienes un campo de imagen en el modelo -->
+                    {% if curso.imagen %}
+                        <img src="{{ curso.imagen.url }}" alt="Course Image">
+                    {% else %}
+                        <img src="{% static 'path/to/default-image.png' %}" alt="Default Course Image">
+                    {% endif %}
+                    <div class="course-title">
+                        <h2>{{ curso.nombre }}</h2>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        
+        <div class="pagination">
+            <!-- Ejemplo de paginación estática -->
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+        </div>
+    </div>
+</main>
 {% endblock contenido %}
