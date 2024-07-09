@@ -35,7 +35,7 @@ urlpatterns = [
     path('editarCurso/<int:id>/',viewsAdmin.consultarCursoIndividual,name='ConsultaIndividual'),
     path('altaCursos/',viewsAdmin.altaCurso,name='Alta'),
     path('continuar/',viewsAdmin.continuar,name='Continuar'),
-    path('login/', viewsAdmin.CustomLoginView.as_view(), name='login'),
+    path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
     path('accounts/', include('django.contrib.auth.urls')),
 
 ]
