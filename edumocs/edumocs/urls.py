@@ -34,6 +34,8 @@ urlpatterns = [
     path('editarCurso/<int:id>/',viewsAdmin.consultarCursoIndividual,name='ConsultaIndividual'),
     path('altaCursos/',viewsAdmin.altaCurso,name='Alta'),
     path('continuar/',viewsAdmin.continuar,name='Continuar'),
+    path('cursoContenido/',views_cursos.cursoContenido,name = 'CursoContenido'),
+    path('preinscripcion/',views_cursos.preinscripcion,name = 'Preinscripcion'),
 
 ]
 
