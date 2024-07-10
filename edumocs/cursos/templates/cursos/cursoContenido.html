@@ -1,0 +1,54 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %}
+{{cursos.nombre}}
+{% endblock titulo %}
+
+{% block contenido %}
+<main class="main-content">
+    <div class="card-container">
+        <div class="card">
+            <section class="section">
+                <div class="container">
+                    <img src="circuit.jpg" alt="Circuitos" class="main-image">
+                    <h2>Bienvenido</h2>
+                    <p>Bienvenido a la vista de contenido del curso de circuitos avanzados II. Aquí podrás encontrar nuestros temarios para pre-ordenar tu curso y convertirte en un diseñador de circuitos.</p>
+                    <p>Cupos totales: 24</p>
+                    <p>Cupos Restantes: 4</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <button class="btn-custom">Pre-Inscribirse</button>
+                </div>
+            </section>
+        </div>
+
+        <div class="card">
+            <section class="section">
+                <div class="container">
+                    <div class="profile-picture">
+                        <img src="professor.jpg" alt="Profesor">
+                    </div>
+                    <h2>Profesor Fulano de Tal</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item">Primer Tema: Introducción</li>
+                        <li class="list-group-item">Segundo Tema: Instalación de Componentes</li>
+                        <li class="list-group-item">Tercer Tema: Subtema 1</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="embed-responsive">
+                        <img src="video.jpg" alt="Video">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+
+{% endblock contenido %}
