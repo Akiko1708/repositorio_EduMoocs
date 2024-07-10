@@ -514,3 +514,153 @@ footer {
     border: 2px solid #4b0082;
     background-color: #fff;
 }
+
+/*CSS de preguntas Frecuentes*/
+
+
+.faq-section {
+    text-align: center;
+    background: linear-gradient(to bottom, #a8e0ff, #f8f9f9);
+    padding: 2rem 0;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.faq-item {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #6a0dad;
+}
+
+.comments-section {
+    background-color: #f8f9f9;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.comments-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.comment {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: left;
+}
+
+.comment img {
+    width: 30px;
+    height: 30px;
+}
+
+.carousel-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.social-media img {
+    width: 20px;
+    height: 20px;
+    margin: 0 0.5rem;
+}
+
+/*CSS Preinscripcion*/
+.heropre {
+    background-image: url(../images/background-image.jpg);
+    padding-top: 80px; /* Espacio para la navbar fija */
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+}
+.preinscription-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+    background: linear-gradient(to bottom, #a8e0ff, #f8f9f9);
+}
+
+.cost-info {
+    
+    padding: 1rem;
+    border-radius: 5px;
+    max-width: 600px;
+    text-align: left;
+}
+
+.cost-info h2 {
+    margin-top: 0;
+}
+
+.learn-more-btn {
+    background-color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.form-container {
+    background: linear-gradient(to right, #6d60b3, #5369a5);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 599px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input {
+    width: calc(100% - 10px);
+    padding: 0.1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-btn {
+    background-color: rgb(0, 183, 255);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+}
