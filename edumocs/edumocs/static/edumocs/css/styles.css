@@ -3,8 +3,12 @@
 }
 
 .navbar-nav .nav-link {
-    color: white;
+    color: white !important;
     
+}
+
+.nav-text{
+    color: white;
 }
 
 .navbar-nav .nav-link:hover {
