@@ -1,0 +1,43 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %}Preguntas{% endblock titulo %}
+{% load static %}
+{% block contenido %}
+<main>
+    <section class="faq-section">
+        <div class="faq-grid">
+            <div class="faq-item">¿Como pago? <span>&#10132;</span></div>
+            <div class="faq-item">La preinscriopcion <span>&#10132;</span></div>
+            <div class="faq-item">¿Cuantos alumnos pueden acceder al curso? <span>&#10132;</span></div>
+            <div class="faq-item">¿Como puedo dar cursos? <span>&#10132;</span></div>
+            <div class="faq-item">¿Que hacer en caso de problemas? <span>&#10132;</span></div>
+            <div class="faq-item">¿Cuantos cupos tienen los cursos? <span>&#10132;</span></div>
+            <div class="faq-item">¿Como veo los cursos? <span>&#10132;</span></div>
+            <div class="faq-item">¿La empresa se encarga de los reembolsos? <span>&#10132;</span></div>
+            <div class="faq-item">Los cursos <span>&#10132;</span></div>
+            <div class="faq-item">Pregunta seria<span>&#10132;</span></div>
+        </div>
+        <div class="pagination">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+    <section class="comments-section">
+        <h2>Comentarios</h2>
+        <div class="comments-carousel">
+            <button class="carousel-btn left">&#10094;</button>
+            <div class="comment">
+                <img src="{% static "edumocs/images/profile.png" %}" alt="User Icon">
+                <p>¿Qué nivel de experiencia previa en programación necesito para inscribirme en el curso de Python?</p>
+            </div>
+            <div class="comment">
+                <img src="{% static "edumocs/images/profile.png" %}" alt="User Icon">
+                <p>¿Qué nivel de experiencia previa en programación necesito para inscribirme en el curso de Python?</p>
+            </div>
+            <button class="carousel-btn right">&#10095;</button>
+        </div>
+    </section>
+</main>
+{% endblock contenido %}
+

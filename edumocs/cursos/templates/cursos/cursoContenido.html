@@ -1,0 +1,64 @@
+{% extends "contenido/BaseNavBar.html" %} {% block titulo %} {{ cursos.nombre }}
+{% endblock titulo %} {% block contenido %}
+<main class="container mt-5 pt-5">
+  <div class="row">
+    <!-- Sección de Bienvenida -->
+    <div class="col-md-8">
+      <div class="card mb-4 shadow-sm">
+        <img
+          src="{{cursos.imagen.url}}"
+          alt="Aqui puse mi imagen"
+          class="card-img-top"
+        />
+        <div class="card-body">
+          <h2 class="card-title">Bienvenido</h2>
+          <p class="card-text">{{cursos.descripcion}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text">Cupos totales: 24</p>
+            <p class="card-text">Cupos Restantes: 4</p>
+          </div>
+          <a href="{% url 'Preinscripcion' %}" class="btn btn-primary btn-lg"
+            >Pre-Inscribirse</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Profesor y Temas -->
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body text-center">
+          <img
+            src="professor.jpg"
+            alt="Profesor"
+            class="img-fluid rounded-circle mb-3"
+            width="150"
+          />
+          <h4 class="card-title">{{cursos.profesor}}</h4>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Contenido:</h5>
+          <ul class="list-group">
+            <li class="list-group-item">Primer Tema: Introducción</li>
+            <li class="list-group-item">
+              Segundo Tema: Instalación de Componentes
+            </li>
+            <li class="list-group-item">Tercer Tema: Subtema 1</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card mb-4 shadow-sm">
+        {% load static %}
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe
+            src=" {%static 'edumocs/images/video.webm' %}"
+            alt="Video"
+            class="embed-responsive-item"
+            allowfullscreen
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock contenido %}
