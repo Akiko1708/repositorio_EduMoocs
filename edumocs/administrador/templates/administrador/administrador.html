@@ -1,7 +1,5 @@
-{% extends "contenido/BaseNavBar.html" %}
-{% block titulo %}Panel de Admin{% endblock titulo %}
-{% load static %}
-{% block boton %}
+{% extends "contenido/BaseNavBar.html" %} {% block titulo %}Panel de
+Admin{%endblock titulo %} {% load static %} {% block boton %}
 <a class="navbar-brand" href="{% url 'Administrador' %}">
   <img
     src="{% static '/edumocs/images/profile.png' %}"
@@ -11,8 +9,8 @@
     alt="Admin"
   />
 </a>
-{% endblock boton %}
-{% block contenido %}
+{% endblock boton %} {% block contenido %}
+<h1>Administrador de Cursos Edumocs</h1>
 <main class="container mt-5 pt-5">
   <div class="row">
     <div class="col-md-3 text-center profile-container">
