@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'contenido',
     'administrador',
     'cursos.apps.CursosConfig',
+    'foro',
 ]
 
 MIDDLEWARE = [

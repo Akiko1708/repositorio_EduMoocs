@@ -1,0 +1,27 @@
+{% extends "contenido/BaseNavBar.html" %} {%block contenido %}
+<section class="pregunta-section">
+  <h2>Preguntas</h2>
+  <div class="pregunta-form">
+    <form method="post">
+      {% csrf_token %} {{ pregunta_form.as_p }}
+      <button type="submit">Hacer Pregunta</button>
+    </form>
+  </div>
+
+  <div class="pregunta-list">
+    {% for pregunta in preguntas %}
+    <div class="pregunta-item">
+      <p>
+        <strong>{{ pregunta.nombre_usuario }}:</strong> {{ pregunta.mensaje }}
+      </p>
+      <a href="{% url 'responder' pregunta.id %}">Responder</a>
+      <div class="respuestas">
+        {% for respuesta in pregunta.respuestas.all %}
+        <p>{{ respuesta.respuesta }}</p>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{%endblock contenido %}

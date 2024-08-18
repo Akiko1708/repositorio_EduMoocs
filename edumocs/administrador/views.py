@@ -82,7 +82,7 @@ def editarCurso(request, id):
             
             form.save()
             cursos = Cursos.objects.all()
-            return render("administrador/administrador.html",{'cursos':cursos})
+            return render(request,"administrador/administrador.html",{'cursos':cursos})
 
         return render(request,"administrador/editarCurso.html",{'curso':curso})
 

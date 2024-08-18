@@ -20,6 +20,7 @@ from django.urls import path
 from contenido import views
 from cursos import views as views_cursos
 from administrador import views as viewsAdmin
+from foro import views as viewsForo
 from django.conf import settings
 
 urlpatterns = [
@@ -28,7 +29,7 @@ urlpatterns = [
     path('cursos/',views_cursos.cursosPrincipal,name="Cursos"),
     path('acercade/',views.acercade,name="Acercade"),
     path('preguntas/',views.preguntas,name="Preguntas"),
-    path('foro/',views.foro,name="Foro"),
+    path('foro/',viewsForo.foro_view,name="Foro"),
     path('eliminarCursos/<int:id>/',viewsAdmin.eliminarCurso,name='Eliminar'),
     path('administrador/',viewsAdmin.panelPrincipal,name="Administrador"),
     path('cursoEditado/<int:id>/',viewsAdmin.editarCurso,name='Editar'),
@@ -40,6 +41,7 @@ urlpatterns = [
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='login'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('responder/<int:pregunta_id>/', viewsForo.responder_view, name='responder'),
 
 ]
 
