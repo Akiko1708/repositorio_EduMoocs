@@ -9,7 +9,12 @@ from .models import Prueba
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import Group
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+
 
 def panelPrincipal(request):
     curso = Cursos.objects.all()
@@ -65,8 +70,15 @@ def continuar(request):
 
 class CustomLoginView(auth_views.LoginView):
     template_name = 'administrador/custom_login.html'
-    success_url = reverse_lazy('home') 
 
+    def form_valid(self, form):
+        user = form.get_user()
+        
+        # Verifica si el usuario pertenece al grupo "Administradores"
+        if user.groups.filter(name='Administradores').exists():
+            return render(self.request, 'administrador/administrador.html')  # Redirige al panel de administrador
+        else:
+            return render(self.request, 'contenido/inicio.html')  # Redirige a la página de inicio para otros usuarios
 
 ##################################Editar Cursos, aún en pruebas no tocar###################################################################
 def consultarCursoIndividual(request, id):
