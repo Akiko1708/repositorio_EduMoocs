@@ -668,3 +668,20 @@ footer {
     border-radius: 5px;
     color: white;
 }
+
+/*Confirmación*/
+.btn-custom-confirm {
+    background-color: #00d4ff; /* Color del botón, puedes ajustarlo */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom-confirm:hover {
+    background-color: #009db3; /* Color al pasar el cursor */
+}

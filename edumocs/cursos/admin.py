@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Cursos
+from .models import Preinscripcion
 
 
 class AdministrarCurso(admin.ModelAdmin):
@@ -15,4 +16,14 @@ class AdministrarCurso(admin.ModelAdmin):
         css = {
             'all': ('edumocs/css/custom_admin.css',)
             }
-admin.site.register(Cursos,AdministrarCurso)
+
+class AdministrarPreinscripcion(admin.ModelAdmin):
+    readonly_fields = ('nombre', 'created')
+    list_display = ('id', 'nombre', 'curso')
+    search_fields = ('id', 'nombre', 'curso', 'estado', 'ciudad')  
+    date_hierarchy = 'created'
+    list_filter = ('ciudad', 'curso') 
+
+admin.site.register(Cursos, AdministrarCurso)
+admin.site.register(Preinscripcion, AdministrarPreinscripcion)
+

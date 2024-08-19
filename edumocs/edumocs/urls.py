@@ -36,10 +36,11 @@ urlpatterns = [
     path('altaCursos/',viewsAdmin.altaCurso,name='Alta'),
     path('continuar/',viewsAdmin.continuar,name='Continuar'),
     path('cursoContenido/<int:id>/',views_cursos.cursoContenido,name = 'CursoContenido'),
-    path('preinscripcion/',views_cursos.preinscripcion,name = 'Preinscripcion'),
+    path('preinscripcion/<int:curso_id>/',views_cursos.preinscripcion,name = 'Preinscripcion'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='login'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
 
 ]
 

@@ -1,7 +1,8 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 from datetime import datetime 
-from django.contrib.auth.models import User
+import phonenumbers
 
 
 class Cursos(models.Model):
@@ -22,5 +23,30 @@ class Cursos(models.Model):
         verbose_name_plural = ("Cursos")
         ordering = ["-created"]
 
-    def _str_(self):
+    def __str__(self):
         return self.nombre
+    
+class Preinscripcion(models.Model):
+        nombre = models.CharField(verbose_name="Nombre",max_length=50)
+        ciudad = models.CharField(verbose_name ="Ciudad", max_length=30)
+        telefono = models.CharField(max_length=10)
+        estado = models.CharField(verbose_name= "Estado", max_length=30)
+        correo = models.EmailField(max_length=254)
+        curso = models.ForeignKey(Cursos,on_delete= models.CASCADE, verbose_name= "Curso")
+        created = models.DateTimeField(auto_now_add=True,verbose_name="Registro")
+        class Meta:
+            verbose_name = ("Preinscripción")
+            verbose_name_plural = ("Preinscripciones")
+            ordering = ["-created"]
+
+        def clean(self):
+            try:
+                p = phonenumbers.parse(self.telefono,'MX')
+                if not phonenumbers.is_valid_number(p):
+                    raise ValidationError ("El numero no es valido")
+            except phonenumbers.NumberParseException:
+                raise ValidationError("El formato del numero de telefono no es valido")
+            super().clean()
+
+        def __str__(self):
+            return self.nombre
