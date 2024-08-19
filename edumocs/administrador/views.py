@@ -9,7 +9,7 @@ from .models import Prueba
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth import logout 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
@@ -68,12 +68,27 @@ def altaCurso(request):
 def continuar(request):
     return render(request,'administrador/continuar.html')
 
+from django.contrib.auth import login
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth import views as auth_views
+
 class CustomLoginView(auth_views.LoginView):
     template_name = 'administrador/custom_login.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        # Si el usuario ya está autenticado y pertenece al grupo "Administradores"
+        if request.user.is_authenticated and request.user.groups.filter(name='Administradores').exists():
+            # Redirigir al panel de administrador
+            return HttpResponseRedirect(reverse('Administrador'))
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         user = form.get_user()
-        
+
+        # Realiza el inicio de sesión
+        login(self.request, user)
+
         # Verifica si el usuario pertenece al grupo "Administradores"
         if user.groups.filter(name='Administradores').exists():
             # Redirige al panel de administrador
@@ -82,6 +97,10 @@ class CustomLoginView(auth_views.LoginView):
             # Redirige a la página de inicio para otros usuarios
             return HttpResponseRedirect(reverse('Inicio'))
 
+
+def custom_logout(request):
+    logout(request)
+    return render(request,'administrador/custom_logout.html')
 
 ##################################Editar Cursos, aún en pruebas no tocar###################################################################
 def consultarCursoIndividual(request, id):

@@ -20,7 +20,9 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
         class="profile-picture img-thumbnail mb-3"
       />
       <div class="btn-group mb-4">
-        <button class="btn btn-custom">Editar</button>
+        <a href="{% url 'Logout' %}"
+          ><button class="btn btn-red">Cerrar Sesión</button></a
+        >
         <button class="btn btn-custom">Ver</button>
       </div>
       <h2>Datos personales</h2>
@@ -114,4 +116,12 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
     </div>
   </div>
 </main>
+<form
+  id="logout-form"
+  action="{% url 'logout' %}"
+  method="post"
+  style="display: none"
+>
+  {% csrf_token %}
+</form>
 {% endblock contenido %}

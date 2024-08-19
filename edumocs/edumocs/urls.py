@@ -22,6 +22,7 @@ from cursos import views as views_cursos
 from administrador import views as viewsAdmin
 from foro import views as viewsForo
 from django.conf import settings
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,7 +39,7 @@ urlpatterns = [
     path('continuar/',viewsAdmin.continuar,name='Continuar'),
     path('cursoContenido/<int:id>/',views_cursos.cursoContenido,name = 'CursoContenido'),
     path('preinscripcion/',views_cursos.preinscripcion,name = 'Preinscripcion'),
-   
+    path('logout/', viewsAdmin.custom_logout, name='Logout'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('responder/<int:pregunta_id>/', viewsForo.responder_view, name='responder'),
