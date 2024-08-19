@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
+from django.urls import reverse
 
 
 def panelPrincipal(request):
@@ -76,9 +76,12 @@ class CustomLoginView(auth_views.LoginView):
         
         # Verifica si el usuario pertenece al grupo "Administradores"
         if user.groups.filter(name='Administradores').exists():
-            return render(self.request, 'administrador/administrador.html')  # Redirige al panel de administrador
+            # Redirige al panel de administrador
+            return HttpResponseRedirect(reverse('Administrador'))
         else:
-            return render(self.request, 'contenido/inicio.html')  # Redirige a la página de inicio para otros usuarios
+            # Redirige a la página de inicio para otros usuarios
+            return HttpResponseRedirect(reverse('Inicio'))
+
 
 ##################################Editar Cursos, aún en pruebas no tocar###################################################################
 def consultarCursoIndividual(request, id):
