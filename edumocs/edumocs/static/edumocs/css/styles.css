@@ -294,6 +294,16 @@ footer {
     align-items: center;
 }
 
+.logout-background {
+    background-image: url('./../images/logout.webp');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .login-container {
     background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
     padding: 20px;

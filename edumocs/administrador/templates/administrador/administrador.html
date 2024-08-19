@@ -10,8 +10,9 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
   />
 </a>
 {% endblock boton %} {% block contenido %}
-<h1>Administrador de Cursos Edumocs</h1>
-<main class="container mt-5 pt-5">
+
+<main class="container mt-5 pt-9">
+  <h1>Administrador de Cursos Edumocs</h1>
   <div class="row">
     <div class="col-md-3 text-center profile-container">
       <img
@@ -23,46 +24,39 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
         <a href="{% url 'Logout' %}"
           ><button class="btn btn-red">Cerrar Sesión</button></a
         >
-        <button class="btn btn-custom">Ver</button>
+        <button class="btn btn-custom">Cambiar Contraseña</button>
       </div>
-      <h2>Datos personales</h2>
-      <ul class="list-group">
-        <li class="list-group-item">
-          Nombre completo: <span>{{ usuario_detalles.nombre }}</span>
-          <span class="edit-icon">&#x270E;</span>
-        </li>
-        <li class="list-group-item">
-          Correo electrónico:
-          <span>{{ usuario_detalles.correo_electronico }}</span>
-          <span class="edit-icon">&#x270E;</span>
-        </li>
-        <li class="list-group-item">
-          Número de teléfono:
-          <span>{{ usuario_detalles.numero_telefono }}</span>
-          <span class="edit-icon">&#x270E;</span>
-        </li>
-        <li class="list-group-item">
-          Fecha de nacimiento:
-          <span>{{ usuario_detalles.fecha_nacimiento }}</span>
-          <span class="edit-icon">&#x270E;</span>
-        </li>
-        <li class="list-group-item">
-          Nombre de usuario: <span>{{ usuario_detalles.nombre_usuario }}</span>
-          <span class="edit-icon">&#x270E;</span>
-        </li>
-        <li class="list-group-item">
-          Género: <span>{{ usuario_detalles.genero }}</span>
-          <span class="edit-icon">&#x270E;</span>
-        </li>
-      </ul>
     </div>
-    <div class="col-md-9">
+
+    <div class="container mt-0 p-0">
+      <table>
+        <thead>
+          <tr>
+            Curso
+          </tr>
+          <tr>
+            Pre-inscritos
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for curso in cursos %}
+          <tr>
+            <td>{{curso.nombre}}</td>
+            <td>{{curso.cupos_restantes}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-13">
       <div class="table-responsive">
         <table class="table table-bordered table-hover">
           <thead class="thead-light">
             <tr>
               <th>Clave</th>
               <th>Nombre</th>
+              <th>Profesor</th>
               <th>Descripción</th>
               <th>Duración Horas</th>
               <th>Fecha de Inicio</th>
@@ -78,6 +72,7 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
             <tr>
               <td>{{ curso.id }}</td>
               <td>{{ curso.nombre }}</td>
+              <td>{{curso.profesor}}</td>
               <td class="td-width">
                 <div class="course-item">{{ curso.descripcion }}</div>
               </td>

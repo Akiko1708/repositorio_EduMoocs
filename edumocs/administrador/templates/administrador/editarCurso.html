@@ -91,6 +91,18 @@ Cursos{%endblock titulo %} {% block contenido %}
               />
             </div>
             <div class="form-group mb-3">
+              <label for="profesor">Profesor:</label>
+              <input
+                value="{{ curso.profesor }}"
+                type="text"
+                class="form-control"
+                name="profesor"
+                id="profesor"
+                placeholder="Ingrese nombre del profesor"
+                required
+              />
+            </div>
+            <div class="form-group mb-3">
               <label for="imagen">Imagen Actual:</label>
               {% if curso.imagen %}
               <div>

@@ -19,7 +19,9 @@ def preinscripcion (request,curso_id):
         if form.is_valid():
             preinscripcion = form.save(commit = False)
             preinscripcion.curso = curso 
-            curso.cupos_restantes -=1
+            cupos_restantes = curso.cupos - 1
+            curso.cupos_restantes +=1 
+            curso.cupos = cupos_restantes
             curso.save()
             preinscripcion.save()
             return redirect('confirmacion')

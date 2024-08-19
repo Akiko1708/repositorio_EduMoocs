@@ -27,6 +27,7 @@ Cursos{%endblock titulo %} {% block contenido %}
                 required
               />
             </div>
+
             <div class="form-group mb-3">
               <label for="costo">Costo</label>
               <input
@@ -81,6 +82,18 @@ Cursos{%endblock titulo %} {% block contenido %}
                 name="cupos"
                 id="cupos"
                 placeholder="Ingrese el límite de cupos"
+                required
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="profesor">Profesor:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="profesor"
+                id="profesor"
+                placeholder="Ingrese nombre del profesor"
                 required
               />
             </div>

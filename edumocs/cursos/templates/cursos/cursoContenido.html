@@ -15,17 +15,20 @@
           <p class="card-text">{{cursos.descripcion}}</p>
           <div class="d-flex justify-content-between align-items-center">
             <p class="card-text">Costo: {{cursos.costo}} MXN</p>
-            <p class="card-text">Limite de Cupos: {{cursos.cupos}}</p>
           </div>
           <div class="d-flex justify-content-between align-items-center">
-            <p class="card-text">Cupos Restantes: {{cursos.cupos_restantes}}</p>
-            <p class="card-text">Total de Horas: {{cursos.horas}} Horas</p> 
+            <p class="card-text">Cupos Restantes: {{cursos.cupos}}</p>
+            <p class="card-text">Total de Horas: {{cursos.horas}} Horas</p>
           </div>
           <div class="d-flex justify-content-between align-items-center">
             <p class="card-text">Fecha de Inicio: {{cursos.fecha_inicio}}</p>
-            <p class="card-text">Fecha de finalización: {{cursos.fecha_termino}}</p>
+            <p class="card-text">
+              Fecha de finalización: {{cursos.fecha_termino}}
+            </p>
           </div>
-          <a href="{% url 'Preinscripcion' cursos.id %}" class="btn btn-primary btn-lg"
+          <a
+            href="{% url 'Preinscripcion' cursos.id %}"
+            class="btn btn-primary btn-lg"
             >Pre-Inscribirse</a
           >
         </div>

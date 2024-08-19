@@ -16,7 +16,7 @@ class Cursos(models.Model):
     cupos_restantes = models.IntegerField(verbose_name="Cupos Restantes",default=0)
     imagen = models.ImageField(null=True,upload_to="fotos",verbose_name="Fotografia")
     descripcion = models.TextField(verbose_name="Descripcion General del Curso",default="")
-    profesor = models.CharField( max_length=50)
+    profesor = models.CharField( max_length=50,default="Por asignar")
     created = models.DateTimeField(blank=True,default=datetime.now)
     updated = models.DateTimeField(blank=True,default=datetime.now)
     class Meta:
