@@ -10,7 +10,7 @@ class CustomClearableFileInput(ClearableFileInput):
 class cursosForm(forms.ModelForm):
     class Meta:
         model = Cursos
-        fields = ['nombre', 'costo', 'fecha_inicio', 'fecha_termino', 'horas', 'cupos','profesor', 'imagen', 'descripcion']
+        fields = ['nombre', 'costo', 'fecha_inicio', 'fecha_termino', 'horas', 'cupos','profesor', 'imagen', 'descripcion' ,'contenido']
         widgets = {
             'imagen': CustomClearableFileInput
         }

@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 from datetime import datetime 
 import phonenumbers
-
+from ckeditor.fields import RichTextField
 
 class Cursos(models.Model):
     id = models.AutoField(primary_key=True,verbose_name="Clave de Curso")
@@ -17,6 +17,7 @@ class Cursos(models.Model):
     imagen = models.ImageField(null=True,upload_to="fotos",verbose_name="Fotografia")
     descripcion = models.TextField(verbose_name="Descripcion General del Curso",default="")
     profesor = models.CharField( max_length=50,default="Por asignar")
+    contenido = RichTextField(verbose_name="Contenido",default="")
     created = models.DateTimeField(blank=True,default=datetime.now)
     updated = models.DateTimeField(blank=True,default=datetime.now)
     class Meta:

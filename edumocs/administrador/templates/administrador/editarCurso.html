@@ -125,8 +125,11 @@ Cursos{%endblock titulo %} {% block contenido %}
                 id="imagen"
               />
             </div>
+
             <div class="form-group mb-3">
-              <label for="descripcion">Descripción:</label>
+              <label for="descripcion"
+                >Describe una idea general del del curso:</label
+              >
               <textarea
                 cols="50"
                 name="descripcion"
@@ -137,6 +140,21 @@ Cursos{%endblock titulo %} {% block contenido %}
                 required
               >
 {{ curso.descripcion }}</textarea
+              >
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="contenido">Describe el contenido del curso:</label>
+              <textarea
+                cols="50"
+                name="contenido"
+                rows="5"
+                class="form-control"
+                id="contenido"
+                placeholder="Ingrese la descripción del curso"
+                required
+              >
+{{ curso.contenido }}</textarea
               >
             </div>
           </div>

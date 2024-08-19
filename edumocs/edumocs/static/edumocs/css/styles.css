@@ -733,3 +733,15 @@ footer {
 .btn-custom:hover {
     background-color: #357ABD;
 }
+
+.description-cell {
+    max-width: 200px; /* Ajusta este valor según lo necesites */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.preserve-line-breaks {
+    white-space: pre-wrap;
+}
+
