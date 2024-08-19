@@ -38,10 +38,15 @@ urlpatterns = [
     path('altaCursos/',viewsAdmin.altaCurso,name='Alta'),
     path('continuar/',viewsAdmin.continuar,name='Continuar'),
     path('cursoContenido/<int:id>/',views_cursos.cursoContenido,name = 'CursoContenido'),
+    path('preinscripcion/<int:curso_id>/',views_cursos.preinscripcion,name = 'Preinscripcion'),
+    path('login/', viewsAdmin.CustomLoginView.as_view(), name='login'),
     path('preinscripcion/',views_cursos.preinscripcion,name = 'Preinscripcion'),
     path('logout/', viewsAdmin.custom_logout, name='Logout'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
+    path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
+    path('no_cupos/',views_cursos.no_cupos,name='no_cupos'),
     path('responder/<int:pregunta_id>/', viewsForo.responder_view, name='responder'),
 
 ]
