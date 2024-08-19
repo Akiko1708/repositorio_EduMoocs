@@ -13,6 +13,7 @@ class Cursos(models.Model):
     fecha_termino = models.DateField(verbose_name="Fecha de Finalización del Curso",default=timezone.now)
     horas = models.IntegerField(verbose_name="Total de Horas del Curso",default=0)
     cupos = models.IntegerField(verbose_name="Limite de cupos",default=0)
+    cupos_restantes = models.IntegerField(verbose_name="Cupos Restantes",default=0)
     imagen = models.ImageField(null=True,upload_to="fotos",verbose_name="Fotografia")
     descripcion = models.TextField(verbose_name="Descripcion General del Curso",default="")
     profesor = models.CharField( max_length=50)
@@ -22,6 +23,11 @@ class Cursos(models.Model):
         verbose_name = ("Curso")
         verbose_name_plural = ("Cursos")
         ordering = ["-created"]
+    
+    def save(self,*args,**kwargs):
+        if not self.pk:
+            self.cupos_restantes = self.cupos
+        super(Cursos,self).save(*args,**kwargs)
 
     def __str__(self):
         return self.nombre

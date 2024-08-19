@@ -1,0 +1,9 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% load static %}
+{% block contenido %}
+<div class="no-cupos">
+    <h2>Lo sentimos, no hay cupos disponibles para este curso.</h2>
+    <p>Por favor, revisa otros cursos o intenta más tarde.</p>
+    <a href="{% url 'Cursos' %}"><button class="btn btn-primary">Ver Cursos Disponibles</button></a>
+</div>
+{% endblock %}

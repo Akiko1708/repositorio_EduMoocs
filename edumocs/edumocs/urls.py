@@ -41,6 +41,8 @@ urlpatterns = [
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
+    path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
+    path('no_cupos/',views_cursos.no_cupos,name='no_cupos'),
 
 ]
 
