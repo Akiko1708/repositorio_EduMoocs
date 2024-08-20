@@ -11,6 +11,7 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
 </a>
 {% endblock boton %} {% block contenido %}
 
+
 <main class="container mt-5 pt-9">
   <h1>Administrador de Cursos Edumocs</h1>
   <div class="row">
@@ -52,6 +53,24 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
       </div>
     </div>
     <div class="col-md-13">
+      <form method="get" action="{% url 'Cursos' %}">
+        <label for="profesor">Profesor:</label>
+        <input type="text" name="profesor" id="profesor">
+        
+        <label for="fecha_inicio">Fecha de Inicio:</label>
+        <input type="date" name="fecha_inicio" id="fecha_inicio">
+        
+        <label for="fecha_termino">Fecha de Término:</label>
+        <input type="date" name="fecha_termino" id="fecha_termino">
+        
+        <button type="submit">Filtrar</button>
+      </form>
+      <form method="get" action="{% url 'Cursos' %}">
+        <input type="text" name="q" placeholder="Buscar cursos">
+        <button type="submit">Buscar</button>
+    </form>
+          
+    
       <div class="table-responsive">
         <table class="table table-bordered table-hover">
           <thead class="thead-light">
