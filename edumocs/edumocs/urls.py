@@ -20,7 +20,9 @@ from django.urls import path
 from contenido import views
 from cursos import views as views_cursos
 from administrador import views as viewsAdmin
+from foro import views as viewsForo
 from django.conf import settings
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +30,7 @@ urlpatterns = [
     path('cursos/',views_cursos.cursosPrincipal,name="Cursos"),
     path('acercade/',views.acercade,name="Acercade"),
     path('preguntas/',views.preguntas,name="Preguntas"),
-    path('foro/',views.foro,name="Foro"),
+    path('foro/',viewsForo.foro_view,name="Foro"),
     path('eliminarCursos/<int:id>/',viewsAdmin.eliminarCurso,name='Eliminar'),
     path('administrador/',viewsAdmin.panelPrincipal,name="Administrador"),
     path('cursoEditado/<int:id>/',viewsAdmin.editarCurso,name='Editar'),
@@ -36,10 +38,16 @@ urlpatterns = [
     path('altaCursos/',viewsAdmin.altaCurso,name='Alta'),
     path('continuar/',viewsAdmin.continuar,name='Continuar'),
     path('cursoContenido/<int:id>/',views_cursos.cursoContenido,name = 'CursoContenido'),
-    path('preinscripcion/',views_cursos.preinscripcion,name = 'Preinscripcion'),
+    path('preinscripcion/<int:curso_id>/',views_cursos.preinscripcion,name = 'Preinscripcion'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='login'),
+    path('preinscripcion/',views_cursos.preinscripcion,name = 'Preinscripcion'),
+    path('logout/', viewsAdmin.custom_logout, name='Logout'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('responder/<int:pregunta_id>/', viewsForo.responder_pregunta, name='responder'),
+    path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
+    path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
+    path('no_cupos/',views_cursos.no_cupos,name='no_cupos'),
 
 ]
 

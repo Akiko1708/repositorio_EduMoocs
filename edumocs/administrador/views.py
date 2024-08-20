@@ -9,7 +9,12 @@ from .models import Prueba
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
+from django.contrib.auth import logout 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import Group
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 def panelPrincipal(request):
     curso = Cursos.objects.all()
@@ -52,8 +57,11 @@ def altaCurso(request):
             cupos = request.POST['cupos']
             imagen = request.FILES['imagen']
             descripcion = request.POST['descripcion']
+            contenido = request.POST['contenido']
+            profesor = request.POST['profesor']
+            
             insert = Cursos(nombre = nombre,costo = costo, fecha_inicio=fecha_ini, fecha_termino=fecha_term,
-                            horas=horas,cupos=cupos,imagen=imagen,descripcion=descripcion)
+                            horas=horas,cupos=cupos,imagen=imagen,descripcion=descripcion,profesor=profesor,contenido=contenido)
             insert.save()
             cursos=Cursos.objects.all()
             return render(request,"administrador/continuar.html",{'curso':cursos})
@@ -63,10 +71,39 @@ def altaCurso(request):
 def continuar(request):
     return render(request,'administrador/continuar.html')
 
+from django.contrib.auth import login
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth import views as auth_views
+
 class CustomLoginView(auth_views.LoginView):
     template_name = 'administrador/custom_login.html'
-    success_url = reverse_lazy('home') 
 
+    def dispatch(self, request, *args, **kwargs):
+        # Si el usuario ya está autenticado y pertenece al grupo "Administradores"
+        if request.user.is_authenticated and request.user.groups.filter(name='Administradores').exists():
+            # Redirigir al panel de administrador
+            return HttpResponseRedirect(reverse('Administrador'))
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        user = form.get_user()
+
+        # Realiza el inicio de sesión
+        login(self.request, user)
+
+        # Verifica si el usuario pertenece al grupo "Administradores"
+        if user.groups.filter(name='Administradores').exists():
+            # Redirige al panel de administrador
+            return HttpResponseRedirect(reverse('Administrador'))
+        else:
+            # Redirige a la página de inicio para otros usuarios
+            return HttpResponseRedirect(reverse('Inicio'))
+
+
+def custom_logout(request):
+    logout(request)
+    return render(request,'administrador/custom_logout.html')
 
 ##################################Editar Cursos, aún en pruebas no tocar###################################################################
 def consultarCursoIndividual(request, id):
@@ -82,7 +119,7 @@ def editarCurso(request, id):
             
             form.save()
             cursos = Cursos.objects.all()
-            return render("administrador/administrador.html",{'cursos':cursos})
+            return render(request,"administrador/administrador.html",{'cursos':cursos})
 
         return render(request,"administrador/editarCurso.html",{'curso':curso})
 
@@ -95,3 +132,50 @@ def prueba(request):
             return render(request,"administrador/administrador.html",{'curso':cursos})
     form = cursosForm()
     return render(request,'administrador/altaCursos.html',{'form':form})
+
+#########################################################APPS Para mejorar DJango##########################################
+
+from django.views.generic import ListView
+
+
+class CursosListView(ListView):
+    model = Cursos
+    template_name = 'administrador.html'  # Nombre de la plantilla que renderiza la lista de cursos
+    context_object_name = 'cursos'  # Nombre del contexto que se pasará a la plantilla
+    paginate_by = 10  # Número de cursos por página, opcional
+
+    def get_queryset(self):
+        # Obtiene el queryset original
+        queryset = super().get_queryset()
+
+        # Filtrado por profesor
+        profesor = self.request.GET.get('profesor')
+        if profesor:
+            queryset = queryset.filter(profesor__icontains=profesor)
+
+        # Filtrado por fecha de inicio
+        fecha_inicio = self.request.GET.get('fecha_inicio')
+        if fecha_inicio:
+            queryset = queryset.filter(fecha_inicio__gte=fecha_inicio)
+
+        # Filtrado por fecha de término
+        fecha_termino = self.request.GET.get('fecha_termino')
+        if fecha_termino:
+            queryset = queryset.filter(fecha_termino__lte=fecha_termino)
+
+        # Búsqueda por nombre de curso
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(nombre__icontains=query)
+
+        return queryset
+
+class CursosListView(ListView):
+    ...
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(nombre__icontains=query)
+        return queryset
+

@@ -68,6 +68,16 @@
     cursor: pointer;
 }
 
+.btn-red {
+    background-color: #e25c4a;
+    color: white;
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .btn-custom:hover {
     background-color: #357ABD;
 }
@@ -78,7 +88,7 @@
 
 
 body {
-    background: #f8f9fa; /* Fondo gris claro */
+    background: linear-gradient(to bottom, #a8e0ff, #f8f9f9);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -215,7 +225,7 @@ footer {
 }
 
 .table {
-    background: linear-gradient(to right, #dce0e4, #d1dcdf);
+    background: linear-gradient(to bottom, #bde7fd, #f8f9f9);
     width: 100%;
     margin-top: 20px;
 }
@@ -276,6 +286,16 @@ footer {
 /* Estilos para el login con imagen de fondo */
 .login-background {
     background-image: url('./../images/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout-background {
+    background-image: url('./../images/logout.webp');
     background-size: cover;
     background-position: center;
     height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
@@ -668,3 +688,124 @@ footer {
     border-radius: 5px;
     color: white;
 }
+
+/* Estilos generales para el chat */
+.chat-container {
+    max-width: 800px;
+    margin: 40px auto; /* Aumento del margen para más centrado vertical */
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra más definida */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrado de elementos hijos */
+}
+
+#chat-log {
+    width: 100%; /* Ajuste para mejor uso del espacio */
+    height: 300px;
+    overflow-y: scroll;
+    padding: 15px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+#chat-message-input, #predefined-questions {
+    width: 80%; /* Ajuste para una mejor proporción */
+    padding: 12px; /* Padding más generoso para mejor tocabilidad */
+    border-radius: 4px;
+    border: 1px solid #ddd; /* Color de borde más suave */
+    margin-bottom: 10px;
+}
+
+#chat-message-submit {
+    width: 18%; /* Ajuste del tamaño para alineación con el input */
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#chat-message-submit:hover {
+    background-color: #0056b3;
+}
+
+/* Efectos y animaciones */
+.chat-container {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chat-container {
+        width: 95%; /* Más ancho en dispositivos pequeños para mejor visibilidad */
+    }
+
+    #chat-message-input, #chat-message-submit, #predefined-questions {
+        width: 100%; /* Uso completo del ancho disponible */
+    }
+}
+/*Confirmación*/
+.btn-custom-confirm {
+    background-color: #00d4ff; /* Color del botón, puedes ajustarlo */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom-confirm:hover {
+    background-color: #009db3; /* Color al pasar el cursor */
+}
+
+/* no_cupos.css */
+.section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f8f9fa; /* Fondo gris claro */
+}
+
+.header {
+    background: linear-gradient(45deg, #78C4D4, #a8dadc);
+    color: white;
+    padding: 40px 20px;
+}
+
+.btn-custom {
+    background-color: #4A90E2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-custom:hover {
+    background-color: #357ABD;
+}
+
+.description-cell {
+    max-width: 200px; /* Ajusta este valor según lo necesites */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.preserve-line-breaks {
+    white-space: pre-wrap;
+}
+
