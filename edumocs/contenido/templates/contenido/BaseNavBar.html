@@ -31,8 +31,25 @@
             </li>
         </ul>
         {% block boton %}
-        <a href="{% url 'Login' %}"><button class="btn btn-outline-light my-2 my-sm-0" type="button">Acceder</button></a>
-        {% endblock boton %}
+    {% if request.user.is_authenticated %}
+        <!-- Mostrar imagen si el usuario tiene la sesión activa -->
+        <a class="navbar-brand" href="{% url 'Administrador' %}">
+            <img
+              src="{% static '/edumocs/images/profile.png' %}"
+              width="30"
+              height="30"
+              class="d-inline-block align-top"
+              alt="Admin"
+            />
+          </a>
+    {% else %}
+        <!-- Mostrar botón de Acceder si el usuario no ha iniciado sesión -->
+        <a href="{% url 'Login' %}">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="button">Acceder</button>
+        </a>
+    {% endif %}
+{% endblock boton %}
+
     </div>  
 </nav>
 
