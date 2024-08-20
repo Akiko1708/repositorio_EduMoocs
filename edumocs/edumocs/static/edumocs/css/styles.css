@@ -689,6 +689,70 @@ footer {
     color: white;
 }
 
+/* Estilos generales para el chat */
+.chat-container {
+    max-width: 800px;
+    margin: 40px auto; /* Aumento del margen para más centrado vertical */
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra más definida */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrado de elementos hijos */
+}
+
+#chat-log {
+    width: 100%; /* Ajuste para mejor uso del espacio */
+    height: 300px;
+    overflow-y: scroll;
+    padding: 15px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+#chat-message-input, #predefined-questions {
+    width: 80%; /* Ajuste para una mejor proporción */
+    padding: 12px; /* Padding más generoso para mejor tocabilidad */
+    border-radius: 4px;
+    border: 1px solid #ddd; /* Color de borde más suave */
+    margin-bottom: 10px;
+}
+
+#chat-message-submit {
+    width: 18%; /* Ajuste del tamaño para alineación con el input */
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#chat-message-submit:hover {
+    background-color: #0056b3;
+}
+
+/* Efectos y animaciones */
+.chat-container {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chat-container {
+        width: 95%; /* Más ancho en dispositivos pequeños para mejor visibilidad */
+    }
+
+    #chat-message-input, #chat-message-submit, #predefined-questions {
+        width: 100%; /* Uso completo del ancho disponible */
+    }
+}
 /*Confirmación*/
 .btn-custom-confirm {
     background-color: #00d4ff; /* Color del botón, puedes ajustarlo */

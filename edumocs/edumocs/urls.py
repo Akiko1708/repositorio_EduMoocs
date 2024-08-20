@@ -44,10 +44,10 @@ urlpatterns = [
     path('logout/', viewsAdmin.custom_logout, name='Logout'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('responder/<int:pregunta_id>/', viewsForo.responder_pregunta, name='responder'),
     path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
     path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
     path('no_cupos/',views_cursos.no_cupos,name='no_cupos'),
-    path('responder/<int:pregunta_id>/', viewsForo.responder_view, name='responder'),
 
 ]
 
