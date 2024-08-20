@@ -43,9 +43,7 @@ INSTALLED_APPS = [
     'administrador',
     'cursos.apps.CursosConfig',
     'foro',
-    'channels'
-
-    'ckeditor',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -141,22 +139,4 @@ CHANNEL_LAYERS = {
             "hosts": [('127.0.0.1',6397)]
         }
     }
-}
-CKEDITOR_CONFIGS ={
-'default':{
-'toolbar':'Basic',
-}
-}
-
-CKEDITOR_CONFIGS = {
-
-'default': {'toolbar': 'Custom',
-'toolbar_Custom': [
-['Bold', 'Italic', 'Underline'],
-['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
-'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-['Link', 'Unlink'],
-['RemoveFormat', 'Source']
-]
-}
 }
