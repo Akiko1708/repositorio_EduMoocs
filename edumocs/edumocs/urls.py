@@ -42,7 +42,7 @@ urlpatterns = [
     path('logout/', viewsAdmin.custom_logout, name='Logout'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('responder/<int:pregunta_id>/', viewsForo.responder_view, name='responder'),
+    path('responder/<int:pregunta_id>/', viewsForo.responder_pregunta, name='responder'),
 
 ]
 
