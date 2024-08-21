@@ -1,7 +1,5 @@
-from django.shortcuts import render
-
 # Create your views here.
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render,redirect
 from cursos.models import Cursos
 from .forms import cursosForm
 from .forms import PruebaForm
@@ -14,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib import messages
 
 
 def panelPrincipal(request):
@@ -164,3 +163,15 @@ def cursos_populares(request):
     cursos_populares = Cursos.objects.order_by('-preinscripciones_count')[:5]
     return render(request, 'administrador/dashboard.html', {'cursos_populares': enumerate(cursos_populares, start=1)})
 
+
+def eliminar_seleccionados(request):
+    if request.method == 'POST':
+        # Obtén la lista de IDs de los cursos seleccionados
+        ids = request.POST.getlist('selected_courses')
+        if ids:
+            # Elimina los cursos con los IDs seleccionados
+            Cursos.objects.filter(id__in=ids).delete()
+            messages.success(request, "Los cursos seleccionados han sido eliminados exitosamente.")
+        else:
+            messages.error(request, "No se seleccionaron cursos para eliminar.")
+    return redirect('Administrador')
