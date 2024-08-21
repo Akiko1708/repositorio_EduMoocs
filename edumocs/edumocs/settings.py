@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'administrador',
     'cursos.apps.CursosConfig',
     'foro',
-    'channels',
 ]
 
 MIDDLEWARE = [
@@ -69,12 +68,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'contenido.context_processors.notificaciones',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'edumocs.wsgi.application'
+
+
 
 
 # Database

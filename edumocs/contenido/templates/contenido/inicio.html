@@ -2,7 +2,7 @@
 {% block titulo %}Inicio{% endblock titulo %}
 {% block contenido %}
 
-<body>
+<body class= "homepage">
     
     <header class="header">
         <div class="container">
@@ -11,7 +11,7 @@
                     <h1>Conoce y Descubre</h1>
                     <p>Descubre nuestros cursos y reserva aprender y jugar. Encuentra y resuelve tus dudas en nuestra sección de preguntas frecuentes. El conocimiento a tu pre-alcance.</p>
                     <a href="{% url "Cursos" %}"><button class="btn btn-custom">Empecemos</button></a>
-                    <a href="{% url 'Preguntas' %}"><button class="btn btn-custom">Aprender Más</button></a>
+                    <a href="{% url 'Foro' %}"><button class="btn btn-custom">Aprender Más</button></a>
                 </div>
                 <div class="col-md-6">
                     <div class="embed-responsive embed-responsive-16by9">

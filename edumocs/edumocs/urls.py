@@ -29,7 +29,7 @@ urlpatterns = [
     path('', views.inicio ,name="Inicio"),
     path('cursos/',views_cursos.cursosPrincipal,name="Cursos"),
     path('acercade/',views.acercade,name="Acercade"),
-    path('preguntas/',views.preguntas,name="Preguntas"),
+    
     path('foro/',viewsForo.foro_view,name="Foro"),
     path('eliminarCursos/<int:id>/',viewsAdmin.eliminarCurso,name='Eliminar'),
     path('administrador/',viewsAdmin.panelPrincipal,name="Administrador"),
@@ -40,14 +40,22 @@ urlpatterns = [
     path('cursoContenido/<int:id>/',views_cursos.cursoContenido,name = 'CursoContenido'),
     path('preinscripcion/<int:curso_id>/',views_cursos.preinscripcion,name = 'Preinscripcion'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='login'),
+    path('filtros.html',viewsAdmin.administrador,name='Filtros'),
     path('preinscripcion/',views_cursos.preinscripcion,name = 'Preinscripcion'),
     path('logout/', viewsAdmin.custom_logout, name='Logout'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('responder/<int:pregunta_id>/', viewsForo.responder_pregunta, name='responder'),
-    path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
+    path('responder/<int:pregunta_id>', viewsForo.responder_pregunta, name='responder_pregunta'),
     path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
     path('no_cupos/',views_cursos.no_cupos,name='no_cupos'),
+    path('enviar_pregunta/', viewsForo.enviar_pregunta, name='enviar_pregunta'),
+    path('dashboard/', viewsAdmin.cursos_populares, name='Dashboard'),
+    path('busqueda/', views_cursos.busqueda, name='Buscar'),
+    path('eliminar-seleccionados/', viewsAdmin.eliminar_seleccionados, name='eliminar_seleccionados'),
+    path('tablon/',viewsAdmin.tablon,name="Tablon"),
+    path('preguntas/', viewsAdmin.verPreguntas, name='verPreguntas'),
+    path('preguntas/eliminar/<int:id>/', viewsAdmin.eliminar_pregunta, name='eliminar_pregunta'),
+    path('preguntas/responder/<int:pregunta_id>/', viewsAdmin.responder_pregunta, name='responder_pregunta'),
 
 ]
 
