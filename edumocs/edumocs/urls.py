@@ -40,6 +40,7 @@ urlpatterns = [
     path('cursoContenido/<int:id>/',views_cursos.cursoContenido,name = 'CursoContenido'),
     path('preinscripcion/<int:curso_id>/',views_cursos.preinscripcion,name = 'Preinscripcion'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='login'),
+    path('filtros.html',viewsAdmin.administrador,name='Filtros'),
     path('preinscripcion/',views_cursos.preinscripcion,name = 'Preinscripcion'),
     path('logout/', viewsAdmin.custom_logout, name='Logout'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
@@ -49,6 +50,12 @@ urlpatterns = [
     path('no_cupos/',views_cursos.no_cupos,name='no_cupos'),
     path('enviar_pregunta/', viewsForo.enviar_pregunta, name='enviar_pregunta'),
     
+    path('enviar_pregunta/', viewsForo.enviar_pregunta, name='enviar_pregunta'),
+    path('dashboard/', viewsAdmin.cursos_populares, name='Dashboard'),
+    path('busqueda/', views_cursos.busqueda, name='Buscar'),
+     path('eliminar-seleccionados/', viewsAdmin.eliminar_seleccionados, name='eliminar_seleccionados'),
+
+
 ]
 
 if settings.DEBUG:

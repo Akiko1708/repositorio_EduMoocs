@@ -1,7 +1,5 @@
-from django.shortcuts import render
-
 # Create your views here.
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render,redirect
 from cursos.models import Cursos
 from .forms import cursosForm
 from .forms import PruebaForm
@@ -14,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib import messages
 
 
 def panelPrincipal(request):
@@ -135,47 +134,44 @@ def prueba(request):
 
 #########################################################APPS Para mejorar DJango##########################################
 
-from django.views.generic import ListView
 
 
-class CursosListView(ListView):
-    model = Cursos
-    template_name = 'administrador.html'  # Nombre de la plantilla que renderiza la lista de cursos
-    context_object_name = 'cursos'  # Nombre del contexto que se pasará a la plantilla
-    paginate_by = 10  # Número de cursos por página, opcional
 
-    def get_queryset(self):
-        # Obtiene el queryset original
-        queryset = super().get_queryset()
+def administrador(request):
+    cursos = Cursos.objects.all()
+    profesor = request.GET.get('profesor')
+    fecha_inicio = request.GET.get('fecha_inicio')
+    fecha_termino = request.GET.get('fecha_termino')
 
-        # Filtrado por profesor
-        profesor = self.request.GET.get('profesor')
-        if profesor:
-            queryset = queryset.filter(profesor__icontains=profesor)
+    if profesor:
+        cursos = cursos.filter(profesor__icontains=profesor)
+    if fecha_inicio:
+        cursos = cursos.filter(fecha_inicio__gte=fecha_inicio)
+    if fecha_termino:
+        cursos = cursos.filter(fecha_termino__lte=fecha_termino)
+    
+    query = request.GET.get("q")
+    if query:
+        cursos = cursos.filter(nombre__icontains=query)
 
-        # Filtrado por fecha de inicio
-        fecha_inicio = self.request.GET.get('fecha_inicio')
-        if fecha_inicio:
-            queryset = queryset.filter(fecha_inicio__gte=fecha_inicio)
+    return render(request, 'administrador/administrador.html', {'cursos': cursos})
 
-        # Filtrado por fecha de término
-        fecha_termino = self.request.GET.get('fecha_termino')
-        if fecha_termino:
-            queryset = queryset.filter(fecha_termino__lte=fecha_termino)
 
-        # Búsqueda por nombre de curso
-        query = self.request.GET.get('q')
-        if query:
-            queryset = queryset.filter(nombre__icontains=query)
 
-        return queryset
 
-class CursosListView(ListView):
-    ...
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        query = self.request.GET.get('q')
-        if query:
-            queryset = queryset.filter(nombre__icontains=query)
-        return queryset
+def cursos_populares(request):
+    cursos_populares = Cursos.objects.order_by('-preinscripciones_count')[:5]
+    return render(request, 'administrador/dashboard.html', {'cursos_populares': enumerate(cursos_populares, start=1)})
 
+
+def eliminar_seleccionados(request):
+    if request.method == 'POST':
+        # Obtén la lista de IDs de los cursos seleccionados
+        ids = request.POST.getlist('selected_courses')
+        if ids:
+            # Elimina los cursos con los IDs seleccionados
+            Cursos.objects.filter(id__in=ids).delete()
+            messages.success(request, "Los cursos seleccionados han sido eliminados exitosamente.")
+        else:
+            messages.error(request, "No se seleccionaron cursos para eliminar.")
+    return redirect('Administrador')

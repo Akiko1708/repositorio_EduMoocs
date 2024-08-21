@@ -25,7 +25,7 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
         <a href="{% url 'Logout' %}"
           ><button class="btn btn-red">Cerrar Sesión</button></a
         >
-        <button class="btn btn-custom">Cambiar Contraseña</button>
+        <a href="{% url 'password_reset' %}"> <button class="btn btn-custom">Cambiar Contraseña</button></a>
       </div>
     </div>
 
@@ -53,7 +53,7 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
       </div>
     </div>
     <div class="col-md-13">
-      <form method="get" action="{% url 'Cursos' %}">
+      <form method="get" action="{% url 'Filtros' %}">
         <label for="profesor">Profesor:</label>
         <input type="text" name="profesor" id="profesor">
         
@@ -65,71 +65,84 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
         
         <button type="submit">Filtrar</button>
       </form>
-      <form method="get" action="{% url 'Cursos' %}">
+      <form method="get" action="{% url 'Filtros' %}">
         <input type="text" name="q" placeholder="Buscar cursos">
         <button type="submit">Buscar</button>
     </form>
           
     
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead class="thead-light">
-            <tr>
-              <th>Clave</th>
-              <th>Nombre</th>
-              <th>Profesor</th>
-              <th>Descripción</th>
-              <th>Duración Horas</th>
-              <th>Fecha de Inicio</th>
-              <th>Fecha de Término</th>
-              <th>Costo</th>
-              <th>Cupos</th>
-              <th>Imagen</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for curso in cursos %}
-            <tr>
-              <td>{{ curso.id }}</td>
-              <td>{{ curso.nombre }}</td>
-              <td>{{curso.profesor}}</td>
-              <td class="td-width">
-                <div class="container mt-4">
-                  <div class="row">
-                    <div class="course-item">
-                      {{ curso.descripcion|truncatechars:100 }}
+    <div class="container mt-0 p-0">
+      <form id="courses-form" method="post">
+        {% csrf_token %}
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th>Seleccionar</th>  
+                <th>Clave</th>
+                <th>Nombre</th>
+                <th>Profesor</th>
+                <th>Descripción</th>
+                <th>Duración Horas</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Término</th>
+                <th>Costo</th>
+                <th>Cupos</th>
+                <th>Imagen</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for curso in cursos %}
+              <tr>
+                <td>
+                  <input type="checkbox" name="selected_courses" value="{{ curso.id }}">
+                </td>
+                <td>{{ curso.id }}</td>
+                <td>{{ curso.nombre }}</td>
+                <td>{{ curso.profesor }}</td>
+                <td class="td-width">
+                  <div class="container mt-4">
+                    <div class="row">
+                      <div class="course-item">
+                        {{ curso.descripcion|truncatechars:100 }}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </td>
-              <td>{{ curso.horas }}</td>
-              <td>{{ curso.fecha_inicio }}</td>
-              <td>{{ curso.fecha_termino }}</td>
-              <td>{{ curso.costo }}</td>
-              <td>{{ curso.cupos }}</td>
-              <td>
-                <div class="course-item">
-                  <img
-                    src="{{ curso.imagen.url }}"
-                    alt="Course Image"
-                    class="course-img img-thumbnail"
-                  />
-                </div>
-              </td>
-              <td>
-                <a href="{% url 'ConsultaIndividual' curso.id %}">
-                  <button class="btn btn-edit btn-sm">&#x270E;</button>
-                </a>
-                <a href="{% url 'Eliminar' curso.id %}">
-                  <button class="btn btn-delete btn-sm">&#x1F5D1;</button>
-                </a>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+                </td>
+                <td>{{ curso.horas }}</td>
+                <td>{{ curso.fecha_inicio }}</td>
+                <td>{{ curso.fecha_termino }}</td>
+                <td>{{ curso.costo }}</td>
+                <td>{{ curso.cupos }}</td>
+                <td>
+                  <div class="course-item">
+                    <img
+                      src="{{ curso.imagen.url }}"
+                      alt="Course Image"
+                      class="course-img img-thumbnail"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <a href="{% url 'ConsultaIndividual' curso.id %}">
+                    <button class="btn btn-edit btn-sm">&#x270E;</button>
+                  </a>
+                  <a href="{% url 'Eliminar' curso.id %}">
+                    <button class="btn btn-delete btn-sm">&#x1F5D1;</button>
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="text-center mt-4">
+          <button type="submit" formaction="{% url 'eliminar_seleccionados' %}" class="btn btn-danger">
+            Eliminar Seleccionados
+          </button>
+        </div>
+      </form>
       <div class="text-center mt-4">
         <a href="{% url 'Alta' %}">
           <button class="btn btn-custom">Nuevo Curso</button>
@@ -138,12 +151,10 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
     </div>
   </div>
 </main>
-<form
-  id="logout-form"
-  action="{% url 'logout' %}"
-  method="post"
-  style="display: none"
->
+<form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none">
   {% csrf_token %}
 </form>
+
+
+
 {% endblock contenido %}

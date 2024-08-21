@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 def navbar(request):
     return render(request,'contenido/BaseNavBar.html')
 
 def inicio(request):
-    return render(request,'contenido/inicio.html')
+    if request.user.is_authenticated:
+        return redirect('Administrador')
+    return render(request, 'contenido/inicio.html')
 
 def detalles_cursos(request):
     return render(request,'contenido/detalles_cursos.html')
