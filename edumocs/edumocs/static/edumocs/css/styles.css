@@ -871,3 +871,10 @@ footer {
     color: #4b0082; /* Morado oscuro */
 }
 
+.no-courses-message {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 1.5rem;
+    color: #574d15; /* Morado principal */
+}
+

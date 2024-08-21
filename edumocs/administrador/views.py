@@ -135,7 +135,7 @@ def prueba(request):
 
 #########################################################APPS Para mejorar DJango##########################################
 
-from django.views.generic import ListView
+
 
 
 def administrador(request):

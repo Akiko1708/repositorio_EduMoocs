@@ -1,5 +1,5 @@
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from .models import Cursos
 from .forms import PreinscripcionesForm
 
@@ -37,4 +37,13 @@ def confirmacion(request):
 
 def no_cupos(request):
     return render (request,'cursos/no_cupos.html')
+
+def busqueda(request):
+    query = request.GET.get('q')
+    if query:
+        cursos = Cursos.objects.filter(nombre__icontains=query)
+    else:
+        cursos = Cursos.objects.all()
+    return render(request, 'cursos/cursosBusqueda.html', {'cursos': cursos})
+
 
