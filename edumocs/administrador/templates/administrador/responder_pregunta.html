@@ -1,0 +1,14 @@
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %}Responder Pregunta{% endblock titulo %}
+{% block contenido %}
+<div class="container mt-5">
+    <h2>Responder Pregunta</h2>
+    <p><strong>Mensaje:</strong> {{ pregunta.mensaje }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enviar Respuesta</button>
+        <a href="{% url 'verPreguntas' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock contenido %}

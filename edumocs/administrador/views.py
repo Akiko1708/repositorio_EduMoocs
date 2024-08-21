@@ -4,6 +4,10 @@ from cursos.models import Cursos
 from .forms import cursosForm
 from .forms import PruebaForm
 from .models import Prueba
+from foro.models import Pregunta
+from foro.models import Respuesta
+from foro.forms import PreguntaForm
+from foro.forms import RespuestaForm
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -175,3 +179,40 @@ def eliminar_seleccionados(request):
         else:
             messages.error(request, "No se seleccionaron cursos para eliminar.")
     return redirect('Administrador')
+
+from django.core.paginator import Paginator
+
+def verPreguntas(request):
+    pregunta_list = Pregunta.objects.all()
+    paginator = Paginator(pregunta_list, 10)  # Muestra 10 preguntas por página
+
+    page_number = request.GET.get('page')
+    preguntas = paginator.get_page(page_number)
+    return render(request, 'administrador/verPreguntas.html', {'preguntas': preguntas})
+# Vista para eliminar preguntas
+def eliminar_pregunta(request, id):
+    pregunta = get_object_or_404(Pregunta, id=id)
+    if request.method == 'POST':
+        pregunta.delete()
+        messages.success(request, "La pregunta ha sido eliminada exitosamente.")
+        return redirect('verPreguntas')
+    return render(request, 'administrador/eliminar_pregunta.html', {'pregunta': pregunta})
+
+# Vista para responder preguntas
+def responder_pregunta(request, id):
+    pregunta = get_object_or_404(Pregunta, id=id)
+    if request.method == 'POST':
+        form = RespuestaForm(request.POST)
+        if form.is_valid():
+            respuesta = form.save(commit=False)
+            respuesta.pregunta = pregunta
+            respuesta.respondida_por = request.user
+            respuesta.save()
+            pregunta.respondida = True
+            pregunta.save()
+            messages.success(request, "La respuesta ha sido enviada exitosamente.")
+            return redirect('verPreguntas')
+    else:
+        form = RespuestaForm()
+
+    return render(request, 'administrador/responder_pregunta.html', {'form': form, 'pregunta': pregunta})
