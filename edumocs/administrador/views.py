@@ -138,44 +138,22 @@ def prueba(request):
 from django.views.generic import ListView
 
 
-class CursosListView(ListView):
-    model = Cursos
-    template_name = 'administrador.html'  # Nombre de la plantilla que renderiza la lista de cursos
-    context_object_name = 'cursos'  # Nombre del contexto que se pasará a la plantilla
-    paginate_by = 10  # Número de cursos por página, opcional
+def administrador(request):
+    cursos = Cursos.objects.all()
+    profesor = request.GET.get('profesor')
+    fecha_inicio = request.GET.get('fecha_inicio')
+    fecha_termino = request.GET.get('fecha_termino')
 
-    def get_queryset(self):
-        # Obtiene el queryset original
-        queryset = super().get_queryset()
+    if profesor:
+        cursos = cursos.filter(profesor__icontains=profesor)
+    if fecha_inicio:
+        cursos = cursos.filter(fecha_inicio__gte=fecha_inicio)
+    if fecha_termino:
+        cursos = cursos.filter(fecha_termino__lte=fecha_termino)
+    
+    query = request.GET.get("q")
+    if query:
+        cursos = cursos.filter(nombre__icontains=query)
 
-        # Filtrado por profesor
-        profesor = self.request.GET.get('profesor')
-        if profesor:
-            queryset = queryset.filter(profesor__icontains=profesor)
-
-        # Filtrado por fecha de inicio
-        fecha_inicio = self.request.GET.get('fecha_inicio')
-        if fecha_inicio:
-            queryset = queryset.filter(fecha_inicio__gte=fecha_inicio)
-
-        # Filtrado por fecha de término
-        fecha_termino = self.request.GET.get('fecha_termino')
-        if fecha_termino:
-            queryset = queryset.filter(fecha_termino__lte=fecha_termino)
-
-        # Búsqueda por nombre de curso
-        query = self.request.GET.get('q')
-        if query:
-            queryset = queryset.filter(nombre__icontains=query)
-
-        return queryset
-
-class CursosListView(ListView):
-    ...
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        query = self.request.GET.get('q')
-        if query:
-            queryset = queryset.filter(nombre__icontains=query)
-        return queryset
+    return render(request, 'administrador/administrador.html', {'cursos': cursos})
 

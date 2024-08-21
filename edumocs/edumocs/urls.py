@@ -40,6 +40,7 @@ urlpatterns = [
     path('cursoContenido/<int:id>/',views_cursos.cursoContenido,name = 'CursoContenido'),
     path('preinscripcion/<int:curso_id>/',views_cursos.preinscripcion,name = 'Preinscripcion'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='login'),
+    path('filtros.html',viewsAdmin.administrador,name='Filtros'),
     path('preinscripcion/',views_cursos.preinscripcion,name = 'Preinscripcion'),
     path('logout/', viewsAdmin.custom_logout, name='Logout'),
     path('login/', viewsAdmin.CustomLoginView.as_view(), name='Login'),
