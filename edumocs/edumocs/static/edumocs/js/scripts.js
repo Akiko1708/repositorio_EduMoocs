@@ -1,23 +1,25 @@
 $(document).ready(function() {
-    // Obtener la URL y el CSRF token desde los inputs ocultos
     const csrfToken = $('#csrf-token').val();
     const enviarPreguntaUrl = $('#enviar-pregunta-url').val();
 
     $('#chat-message-submit').on('click', function() {
-        let mensaje = $('#chat-message-input').val();
-        if ($('#predefined-questions').val()) {
-            mensaje = $('#predefined-questions').val();
+        let mensaje = $('#chat-message-input').val().trim();
+        let preguntaId = $('#predefined-questions').val();
+
+        if (preguntaId) {
+            mensaje = $('#predefined-questions option:selected').text();
         }
 
-        if (mensaje.trim() !== "") {
+        if (mensaje !== "") {
             $('#chat-log').append('<div><strong>Tú:</strong> ' + mensaje + '</div>');
 
             $.ajax({
                 type: 'POST',
-                url: enviarPreguntaUrl,  // Usando la URL desde el input oculto
+                url: enviarPreguntaUrl,
                 data: {
                     'mensaje': mensaje,
-                    'csrfmiddlewaretoken': csrfToken  // Usando el CSRF token desde el input oculto
+                    'pregunta_id': preguntaId,
+                    'csrfmiddlewaretoken': csrfToken
                 },
                 success: function(response) {
                     $('#chat-log').append('<div><strong>Respuesta:</strong> ' + response.respuesta + '</div>');
