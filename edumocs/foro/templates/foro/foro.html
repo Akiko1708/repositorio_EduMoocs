@@ -1,66 +1,34 @@
-{% extends "contenido/BaseNavBar.html" %} {%block contenido %}
-  <div class="container chat-container">
-    <div clas="row">
-      <section class="pregunta-section ">
-        <h2>Chat</h2>
-        <div id="chat-log"></div>
-          <label for="predefined-questions">Elija una pregunta frecuente</label>
-          <select id="predefined-questions">
-              <option value="">Selecciona...</option>
-              {% for pregunta in preguntas %}
-                <option value ="{{pregunta.mensaje}}">{{ pregunta.mensaje }}</option>
-              {% endfor %}
-          </select>
-          <input id="chat-message-input" type="text" size="100" placeholder="Escribe tu pregunta aquí...">
-          <button id="chat-message-submit">Enviar</button> 
-        </section>
+{% extends "contenido/BaseNavBar.html" %}
+{% block titulo %}Chat de Ayuda{% endblock titulo %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="container chat-container">
+    <h2>Chat de Ayuda</h2>
+    <div id="chat-log" style="border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll;">
+        <!-- Aquí se mostrarán los mensajes -->
     </div>
-  </div>
-{%endblock contenido %}
+    <!-- Pasar el CSRF token y la URL al archivo JS -->
+    <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
+    <input type="hidden" id="enviar-pregunta-url" value="{% url 'enviar_pregunta' %}">
+    
+    <label for="predefined-questions">Elija una pregunta frecuente:</label>
+    <select id="predefined-questions">
+        <option value="">Selecciona...</option>
+        {% for pregunta in preguntas %}
+        <option value="{{ pregunta.mensaje }}">{{ pregunta.mensaje }}</option>
+        {% endfor %}
+    </select>
+    <input id="chat-message-input" type="text" size="100" placeholder="Escribe tu pregunta aquí...">
+    <button id="chat-message-submit">Enviar</button>
+</div>
 
+<!-- Cargar jQuery primero -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Cargar el archivo JavaScript externo -->
+<script src="{% static 'edumocs/js/scripts.js' %}"></script>
 
-<script>
-  const chatLog = document.getElementById('chat-log');
-  const chatInput = document.getElementById('chat-message-input');
-  const chatButton = document.getElementById('chat-message-submit');
-  const predefinedQuestions = document.getElementById('predefined-questions');
-  
-  var socket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
-  
-  // Manejo de selección de preguntas predefinidas
-  predefinedQuestions.onchange = function() {
-      if (this.value) {
-          // Enviar la pregunta predefinida seleccionada
-          socket.send(JSON.stringify({
-              'message': this.value,
-              'es_predefinida': true
-          }));
-          
-          // Limpiar la selección del menú desplegable
-          this.selectedIndex = 0;
-      }
-  };
-  
-  // Manejo del botón de envío para preguntas personalizadas
-  chatButton.onclick = function() {
-      if (chatInput.value) {
-          // Enviar la pregunta ingresada por el usuario
-          socket.send(JSON.stringify({
-              'message': chatInput.value,
-              'es_predefinida': false
-          }));
-          
-          // Limpiar el campo de entrada
-          chatInput.value = '';
-      }
-  };
-  
-  // Manejo de mensajes recibidos del servidor
-  socket.onmessage = function(e) {
-      const data = JSON.parse(e.data);
-      const message = document.createElement('div');
-      message.textContent = data.message;
-      chatLog.appendChild(message);
-  };
-  </script>
-  
+{% endblock contenido %}
+
+{% block foter %}{% endblock foter %}

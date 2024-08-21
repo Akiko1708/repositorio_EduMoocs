@@ -10,7 +10,7 @@ class Pregunta(models.Model):
     notificado = models.BooleanField(default= False)
 
     def __str__(self):
-        return f"Pregunta :{self.mensaje} - Predefinida: {'Si'if self.es_predefinida  else'No'}"
+        return f"Pregunta :{self.mensaje} - Respondida: {self.respondida}"
 
 class Respuesta(models.Model):
     pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE, related_name='respuestas')

@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'administrador',
     'cursos.apps.CursosConfig',
     'foro',
-    'channels',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +74,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'edumocs.wsgi.application'
+
+
 
 
 # Database
