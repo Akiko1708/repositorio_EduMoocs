@@ -222,3 +222,8 @@ def responder_pregunta(request, pregunta_id):
         return redirect('verPreguntas')
     
     return render(request, 'administrador/responder_pregunta.html', {'pregunta': pregunta})
+
+def tablon(request):
+    # Filtra preguntas que no sean predefinidas y que tengan al menos una respuesta
+    preguntas_respuestas = Pregunta.objects.filter(es_predefinida=False, respuestas__isnull=False).order_by('-fecha_pregunta')[:10]
+    return render(request, 'foro/preguntas.html', {'preguntas_respuestas': preguntas_respuestas})

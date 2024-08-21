@@ -52,7 +52,7 @@ urlpatterns = [
     path('dashboard/', viewsAdmin.cursos_populares, name='Dashboard'),
     path('busqueda/', views_cursos.busqueda, name='Buscar'),
     path('eliminar-seleccionados/', viewsAdmin.eliminar_seleccionados, name='eliminar_seleccionados'),
-
+    path('tablon/',viewsAdmin.tablon,name="Tablon"),
     path('preguntas/', viewsAdmin.verPreguntas, name='verPreguntas'),
     path('preguntas/eliminar/<int:id>/', viewsAdmin.eliminar_pregunta, name='eliminar_pregunta'),
     path('preguntas/responder/<int:pregunta_id>/', viewsAdmin.responder_pregunta, name='responder_pregunta'),
