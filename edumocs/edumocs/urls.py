@@ -49,7 +49,8 @@ urlpatterns = [
     path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
     path('confirmacion/',views_cursos.confirmacion,name='confirmacion'),
     path('no_cupos/',views_cursos.no_cupos,name='no_cupos'),
-     path('enviar_pregunta/', viewsForo.enviar_pregunta, name='enviar_pregunta'),
+    path('enviar_pregunta/', viewsForo.enviar_pregunta, name='enviar_pregunta'),
+    path('dashboard/', viewsAdmin.cursos_populares, name='Dashboard'),
 
 ]
 

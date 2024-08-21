@@ -809,3 +809,65 @@ footer {
     white-space: pre-wrap;
 }
 
+.dashboard-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #007982; /* Morado oscuro */
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.cardD {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+}
+
+.card-headerD {
+    position: relative;
+    background-color: #0d88ad; /* Morado principal */
+    color: white;
+    padding: 15px;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #4b0082;
+}
+
+.ranking-numberD {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffd700; /* Color dorado */
+    opacity: 0.8;
+}
+
+.card-bodyD {
+    padding: 15px;
+    color: #333;
+}
+
+.card-bodyD p {
+    margin: 10px 0;
+}
+
+.card-bodyD p strong {
+    color: #4b0082; /* Morado oscuro */
+}
+

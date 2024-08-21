@@ -157,3 +157,10 @@ def administrador(request):
 
     return render(request, 'administrador/administrador.html', {'cursos': cursos})
 
+
+
+
+def cursos_populares(request):
+    cursos_populares = Cursos.objects.order_by('-preinscripciones_count')[:5]
+    return render(request, 'administrador/dashboard.html', {'cursos_populares': enumerate(cursos_populares, start=1)})
+

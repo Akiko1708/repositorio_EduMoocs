@@ -25,7 +25,7 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
         <a href="{% url 'Logout' %}"
           ><button class="btn btn-red">Cerrar Sesión</button></a
         >
-        <button class="btn btn-custom">Cambiar Contraseña</button>
+        <a href="{% url 'password_reset' %}"> <button class="btn btn-custom">Cambiar Contraseña</button></a>
       </div>
     </div>
 
