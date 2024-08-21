@@ -199,20 +199,26 @@ def eliminar_pregunta(request, id):
     return render(request, 'administrador/eliminar_pregunta.html', {'pregunta': pregunta})
 
 # Vista para responder preguntas
-def responder_pregunta(request, id):
-    pregunta = get_object_or_404(Pregunta, id=id)
-    if request.method == 'POST':
-        form = RespuestaForm(request.POST)
-        if form.is_valid():
-            respuesta = form.save(commit=False)
-            respuesta.pregunta = pregunta
-            respuesta.respondida_por = request.user
-            respuesta.save()
-            pregunta.respondida = True
-            pregunta.save()
-            messages.success(request, "La respuesta ha sido enviada exitosamente.")
-            return redirect('verPreguntas')
-    else:
-        form = RespuestaForm()
 
-    return render(request, 'administrador/responder_pregunta.html', {'form': form, 'pregunta': pregunta})
+def responder_pregunta(request, pregunta_id):
+    pregunta = get_object_or_404(Pregunta, id=pregunta_id)
+    
+    if request.method == 'POST':
+        respuesta_text = request.POST.get('respuesta')
+        es_predefinida = request.POST.get('es_predefinida') == 'on'
+        
+        # Guardar la respuesta
+        Respuesta.objects.create(
+            pregunta=pregunta,
+            respuesta=respuesta_text,
+            respondida_por=request.user
+        )
+        
+        # Actualizar la pregunta como respondida y su estado predefinido
+        pregunta.respondida = True
+        pregunta.es_predefinida = es_predefinida
+        pregunta.save()
+        
+        return redirect('verPreguntas')
+    
+    return render(request, 'administrador/responder_pregunta.html', {'pregunta': pregunta})

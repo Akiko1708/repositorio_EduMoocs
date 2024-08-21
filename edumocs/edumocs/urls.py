@@ -55,8 +55,7 @@ urlpatterns = [
 
     path('preguntas/', viewsAdmin.verPreguntas, name='verPreguntas'),
     path('preguntas/eliminar/<int:id>/', viewsAdmin.eliminar_pregunta, name='eliminar_pregunta'),
-    path('preguntas/responder/<int:id>/', viewsAdmin.responder_pregunta, name='responder_pregunta'),
-
+    path('preguntas/responder/<int:pregunta_id>/', viewsAdmin.responder_pregunta, name='responder_pregunta'),
 
 ]
 
