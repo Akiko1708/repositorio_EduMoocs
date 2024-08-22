@@ -125,12 +125,8 @@ Admin{%endblock titulo %} {% load static %} {% block boton %}
                   </div>
                 </td>
                 <td>
-                  <a href="{% url 'ConsultaIndividual' curso.id %}">
-                    <button class="btn btn-edit btn-sm">&#x270E;</button>
-                  </a>
-                  <a href="{% url 'Eliminar' curso.id %}">
-                    <button class="btn btn-delete btn-sm">&#x1F5D1;</button>
-                  </a>
+                    <p><a href="{% url 'ConsultaIndividual' curso.id %}" class="btn btn-edit btn-sm">&#x270E;</a></p>
+                    <p><a href="{% url 'Eliminar' curso.id %}" class="btn btn-delete btn-sm">&#x1F5D1;</a></p>
                 </td>
               </tr>
               {% endfor %}

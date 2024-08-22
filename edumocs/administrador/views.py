@@ -184,7 +184,7 @@ from django.core.paginator import Paginator
 
 def verPreguntas(request):
     pregunta_list = Pregunta.objects.all()
-    paginator = Paginator(pregunta_list, 10)  # Muestra 10 preguntas por página
+    paginator = Paginator(pregunta_list, 40)  # Muestra 10 preguntas por página
 
     page_number = request.GET.get('page')
     preguntas = paginator.get_page(page_number)

@@ -24,11 +24,9 @@
                 <td>{{ pregunta.es_predefinida|yesno:"Sí,No" }}</td>
                 <td>{{ pregunta.respondida|yesno:"Sí,No" }}</td>
                 <td>
-                    <!-- Botón para responder -->
                     <a href="{% url 'responder_pregunta' pregunta.id %}">
                         <button class="btn btn-edit btn-sm">&#x270E; Responder</button>
                     </a>
-                    <!-- Botón para eliminar -->
                     <a href="{% url 'eliminar_pregunta' pregunta.id %}" onclick="return confirm('¿Estás seguro de que deseas eliminar esta pregunta?');">
                         <button class="btn btn-delete btn-sm">&#x1F5D1; Eliminar</button>
                     </a>
